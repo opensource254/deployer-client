@@ -34,10 +34,7 @@
   },
   "description": "The official web client for deployer",
   "main": ".eslintrc.js",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/opensource254/deployer-client.git"
-  },
+  "repository": "git+https://github.com/opensource254/deployer-client.git",
   "keywords": [
     "Deployer",
     "Opensource254",
