@@ -1,6 +1,11 @@
 import colors from 'vuetify/es5/util/colors'
 
 export default {
+  server: {
+    port: 4010,
+    host: 'localhost',
+    timing: false,
+  },
   router: {
     middleware: ['auth'],
   },
@@ -40,7 +45,7 @@ export default {
    ** Plugins to load before mounting the App
    ** https://nuxtjs.org/guide/plugins
    */
-  plugins: [],
+  plugins: ['~/plugins/axios', '~/plugins/veevalidate'],
   /*
    ** Auto import components
    ** See https://nuxtjs.org/api/configuration-components
@@ -74,16 +79,26 @@ export default {
    * Auth module
    */
   auth: {
+    cookie: false,
+    redirect: {
+      login: '/login',
+      logout: '/login',
+      callback: '/login',
+      home: '/',
+    },
     strategies: {
       local: {
         token: {
           required: false,
           type: false,
         },
+        user: {
+          property: false,
+        },
         endpoints: {
-          login: { url: '/api/login', method: 'post' },
-          logout: { url: '/api/logout', method: 'post' },
-          user: { url: '/api/user', method: 'get' },
+          login: { url: `${process.env.API_URL}/api/login`, method: 'post' },
+          logout: { url: `${process.env.API_URL}/api/logout`, method: 'post' },
+          user: { url: `${process.env.API_URL}/api/user`, method: 'get' },
         },
       },
     },
