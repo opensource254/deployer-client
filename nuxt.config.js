@@ -1,11 +1,21 @@
 import colors from 'vuetify/es5/util/colors'
 
 export default {
+  /**
+   * configure the environment variables
+   */
+  env: { API_URL: process.env.API_URL },
+  /**
+   * Application server
+   */
   server: {
     port: 4010,
     host: 'localhost',
     timing: false,
   },
+  /**
+   * Vue router
+   */
   router: {
     middleware: ['auth'],
   },
@@ -70,11 +80,6 @@ export default {
     '@nuxtjs/pwa',
     '@nuxtjs/auth-next',
   ],
-  /*
-   ** Axios module configuration
-   ** See https://axios.nuxtjs.org/options
-   */
-  axios: {},
   /**
    * Auth module
    */

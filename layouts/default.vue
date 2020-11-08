@@ -25,7 +25,7 @@
             <v-icon>mdi-cog-outline</v-icon>
           </v-list-item-icon>
           <v-list-item-content>
-            <v-list-item-title>Configuration(s)</v-list-item-title>
+            <v-list-item-title>Applications(s)</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
         <v-list-item to="/deployments">
