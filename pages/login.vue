@@ -62,14 +62,12 @@ export default {
       },
     }
   },
-  mounted() {
-    this.$axios.get('/api/csrf-cookie')
-  },
   auth: 'guest',
   layout: 'auth',
   methods: {
     async signIn() {
       try {
+        await this.$axios.get('/api/csrf-cookie')
         await this.$auth.loginWith('local', {
           data: this.credentials,
         })
