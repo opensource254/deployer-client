@@ -115,7 +115,7 @@
 export default {
   async fetch() {
     try {
-      const res = await this.$axios.get('http://localhost:3232/api/config')
+      const res = await this.$axios.get('/api/config')
       this.configs = res.data
     } catch (error) {
       throw new Error(error)
