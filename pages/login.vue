@@ -53,8 +53,6 @@
 </template>
 <script>
 export default {
-  auth: 'guest',
-  layout: 'auth',
   data() {
     return {
       errorMessage: null,
@@ -64,6 +62,11 @@ export default {
       },
     }
   },
+  mounted() {
+    this.$axios.get('/api/csrf-cookie')
+  },
+  auth: 'guest',
+  layout: 'auth',
   methods: {
     async signIn() {
       try {
