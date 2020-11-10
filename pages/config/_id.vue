@@ -127,6 +127,7 @@ export default {
     /** Update the current config */
     async updateConfig() {
       try {
+        await this.$axios.get('/api/csrf-cookie')
         await this.$axios.put(`/api/config/${this.$route.params.id}`, this.app)
         this.alert.message = 'Configuration updated'
         this.alert.type = 'success'

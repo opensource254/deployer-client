@@ -43,8 +43,11 @@
         </div>
       </template>
     </v-navigation-drawer>
-    <v-app-bar color="primary" app dark @click="drawer = !drawer">
-      <v-app-bar-nav-icon></v-app-bar-nav-icon>
+    <v-app-bar color="primary" app dark>
+      <!-- <v-btn text @click="$router.back()">
+        <v-icon>mdi-arrow-left</v-icon>
+      </v-btn> -->
+      <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
       <v-toolbar-title>Deployer</v-toolbar-title>
     </v-app-bar>
     <v-main>

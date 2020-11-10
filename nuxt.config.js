@@ -40,6 +40,10 @@ export default {
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       {
+        name: 'theme-color',
+        content: colors.blue.darken2,
+      },
+      {
         hid: 'description',
         name: 'description',
         content: process.env.npm_package_description || '',
@@ -50,7 +54,7 @@ export default {
   /*
    ** Global CSS
    */
-  css: [],
+  css: ['~/assets/main.css'],
   /*
    ** Plugins to load before mounting the App
    ** https://nuxtjs.org/guide/plugins
@@ -119,7 +123,7 @@ export default {
       themes: {
         light: {
           primary: colors.blue.darken2,
-          accent: colors.grey.darken3,
+          accent: colors.brown.darken2,
           secondary: colors.amber.darken3,
           info: colors.teal.lighten1,
           warning: colors.amber.base,

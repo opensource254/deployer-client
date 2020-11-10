@@ -98,7 +98,7 @@
               </ValidationProvider>
 
               <v-btn :disabled="invalid" type="submit" color="accent"
-                >Update</v-btn
+                >Create</v-btn
               >
               <v-btn outlined color="secondary" @click="cancelCreate"
                 >Cancel</v-btn
@@ -138,6 +138,7 @@ export default {
     },
     async createConfig() {
       try {
+        await this.$axios.get('/api/csrf-cookie')
         await this.$axios.post('/api/config', this.application)
         // Set the alert
         this.alert.message = 'Configuration created'
