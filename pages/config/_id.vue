@@ -25,7 +25,22 @@
       </v-alert>
       <!-- Alert -->
 
+      <!-- Modal for showing excecution results -->
+      <v-dialog v-model="command.results" width="700">
+        <v-card>
+          <v-card-title>Command results</v-card-title>
+          <v-card-text>
+            <!-- eslint-disable-next-line vue/no-v-html -->
+            <p v-html="command.body"></p>
+          </v-card-text>
+        </v-card>
+      </v-dialog>
+      <!-- Modal for showing excecution results -->
+
       <v-card>
+        <v-card-actions>
+          <v-btn color="accent" @click="runCommand">Run this command</v-btn>
+        </v-card-actions>
         <v-card-title>Update config</v-card-title>
         <v-card-text>
           <ValidationObserver v-slot="{ invalid }" ref="form">
@@ -101,6 +116,13 @@
         </v-card-text>
       </v-card>
     </v-col>
+    <v-overlay v-model="command.running">
+      <v-progress-linear indeterminate />
+      <v-progress-circular indeterminate />
+      <v-progress-circular indeterminate color="warning" />
+      <v-progress-circular indeterminate color="success" />
+      <v-progress-circular indeterminate color="info" />
+    </v-overlay>
   </v-row>
 </template>
 <script>
@@ -115,6 +137,11 @@ export default {
   },
   data() {
     return {
+      command: {
+        results: false,
+        body: null,
+        running: false,
+      },
       deleteDialog: false,
       app: {},
       alert: {
@@ -124,6 +151,21 @@ export default {
     }
   },
   methods: {
+    /** Run the current command */
+    async runCommand() {
+      try {
+        this.command.running = true
+        await this.$axios.get('/api/csrf-cookie')
+        const { data } = await this.$axios.post('/api/command/run', this.app.id)
+        this.command.results = true
+        this.command.body = data
+        this.command.running = false
+      } catch (e) {
+        this.command.results = true
+        this.command.body = e
+        this.command.running = false
+      }
+    },
     /** Update the current config */
     async updateConfig() {
       try {
