@@ -156,7 +156,9 @@ export default {
       try {
         this.command.running = true
         await this.$axios.get('/api/csrf-cookie')
-        const { data } = await this.$axios.post('/api/command/run', this.app.id)
+        const { data } = await this.$axios.post('/api/command/run', {
+          command: this.app.id,
+        })
         this.command.results = true
         this.command.body = data
         this.command.running = false
